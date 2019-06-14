@@ -1003,6 +1003,9 @@ If Windows 10 fails to recognise a Pi Zero W configured as an ethernet gadget as
 A solution to this problem, documented [here](https://www.factoryforward.com/pi-zero-w-headless-setup-windows10-rndis-driver-issue-resolved/), is to use the Device Manager to manually install the [MOD Duo RNDIS driver](http://web1.moddevices.com/shared/mod-duo-rndis.zip).
 This is well documented on the [MOD Devices Wiki](https://wiki.moddevices.com/wiki/Troubleshooting_Windows_Connection).
 
+<hr />
+
+
 ## 7. Notes and references <a name="Sec7"></a>
 
 * Equations were prepared with [http://latex2png.com](http://latex2png.com).
