@@ -4,7 +4,7 @@ In Part 2 of the practical, you will use some of the Python basics you learned i
 
 In Part 3, you will then investigate the capabilities of your colourimeter by designing and running a set of experiments to study the kinetics of the oxidation reaction between household bleach and a blue food dye.
 
-<hr />
+<hr>
 
 
 ## Contents
@@ -34,7 +34,7 @@ In Part 3, you will then investigate the capabilities of your colourimeter by de
   <li><a href="#Sec7">Notes and References</a></li>
 </ol>
 
-<hr />
+<hr>
 
 
 ## 1. RPi basics <a name="Sec1"></a>
@@ -49,7 +49,7 @@ In this practical, you will be using the Raspberry Pi Zero W, which is designed 
 A photo of a Pi zero with the main components marked is shown below:
 
 <p align="center">
-  <img src="Images/Figure1.png" width="500" />
+  <img src="Images/Photo-RPiBoard.png" width="500" />
 </p>
 
 The Zero W is based around a low-power system-on-a-chip (SoC) (1) that contains a 1 GHz single-core CPU, 512 Mb RAM and a low-power graphics chip.
@@ -63,6 +63,7 @@ You will have the option to use the WiFi to work with the Pi during this practic
 Most importantly, the board has a set of general-purpose input/output pins (GPIO pins) (6) that can be controlled from software to interface to electronic components.
 We will be using the GPIO pins to power and control our colourimeter
 
+
 ### a. Getting started <a name="Sec1a"></a>
 
 Your Pi has been set up for you with the "Raspbian" Linux operating system.
@@ -70,6 +71,7 @@ Your Pi has been set up for you with the "Raspbian" Linux operating system.
 [Raspbian](https://www.raspbian.org) is a customised version of Debian Linux for RPi computers.
 
 There are two options for connecting to the Pi:
+
 
 #### i. Using WiFi
 
@@ -83,7 +85,7 @@ Wait a minute or so for it to boot, then use your computer to scan for wireless 
 Once you see the hotspot, join it from your laptop using the password `r@5pb377y`.
 
 <p align="center">
-  <img src="Images/Figure2.png" width="375" />
+  <img src="Images/Screen-WiFiConnect.png" width="375" />
 </p>
 
 <table>
@@ -125,6 +127,7 @@ Once the Pi has booted and the drivers are installed, it should be set up and re
   </tr>
 </table>
 
+
 ### b. Accessing the Pi OS over secure shell (SSH) <a name="Sec1b"></a>
 
 Once the Pi is connected, you can access its operating system using the secure shell (`ssh`) protocol.
@@ -136,7 +139,7 @@ On Windows, the [PuTTY program](https://www.ssh.com/ssh/putty/) can be used to s
 * Launch PuTTY, enter `raspberrypi.local` in the Host Name field, and click "Open"
 
 <p align="center">
-  <img src="Images/Figure3.png" width="375" />
+  <img src="Images/Screen-PuTTY-1.png" width="375" />
 </p>
 
 * If this is the first time PuTTY has seen your Pi, it may show a warning - click "Yes"
@@ -146,7 +149,7 @@ Once you are logged in, you should have a command prompt similar to the followin
 This allows you to send Linux shell commands to the Pi.
 
 <p align="center">
-  <img src="Images/Figure4.png" width="555" />
+  <img src="Images/Screen-PuTTY-2.png" width="555" />
 </p>
 
 (For Mac users: if you prefer, you should be able to connect to the Pi hotspot/connect it with the USB cable and log in to the Pi by opening the `Terminal` app and typing `ssh pi@raspberrypi.local`.)
@@ -198,7 +201,7 @@ print("Hello, Pi!")
 ```
 
 <p align="center">
-  <img src="Images/Figure5.png" width="555" />
+  <img src="Images/Screen-NanoGUI.png" width="555" />
 </p>
 
 As displayed at the bottom of the editor window, `nano` uses keyboard shortcuts of the form `Ctrl + <function>` to cut, paste, save, etc.
@@ -241,8 +244,9 @@ You can now safely disconnect the power supply.
       <img src="Images/WarningTriangle.png" width="100" />
     </td>
     <td>
-      Always shut down the Pi before removing the power (see below).
-      If you disconnect it without doing this, you risk corrupting the SD card and losing any work you've stored on it.
+      Always try to shut down the Pi before removing the power (see below).
+      Like most computers, shutting off the power while the Pi is running is unlikely to do any damage, and is sometimes necessary e.g. to force a reboot if it hangs or becomes unaccessible over the network.
+      However, there is a possibility that it could corrupt the SD card and risk losing any code/data you have stored on it.
     </td>
   </tr>
 </table>
@@ -267,14 +271,14 @@ WinSCP uses the secure file-transfer protocol (SFTP) to transfer files to and fr
 Open the program, enter the login details you used with PuTTY, and click "Login" (Host name: `raspberrypi.local`, User name: `pi`, Password: `r@5pb377y!`).
 
 <p align="center">
-  <img src="Images/Figure6.png" width="425" />
+  <img src="Images/Screen-WinSCP-1.png" width="425" />
 </p>
 
 As with PuTTY, if this is the first time WinSCP has seen your Pi, it will show a warning message - answer "Yes".
 Once connected, you should have an interface similar to the following:
 
 <p align="center">
-  <img src="Images/Figure7.png" width="800" />
+  <img src="Images/Screen-WinSCP-2.png" width="800" />
 </p>
 
 The left-hand pane allows you to browse the local computer, while the right-hand pane shows the file system on the Pi.
@@ -286,7 +290,7 @@ Note that WinSCP does not update the browser window on the remote machine automa
 
 (For Mac users: WinSCP is a Windows-only program, but [FileZilla](https://filezilla-project.org) is a good alternative.)
 
-<hr />
+<hr>
 
 
 ## 2. Electronics 1: LEDs <a name="Sec2"></a>
@@ -312,7 +316,7 @@ Ohm's law can be used to calculate the required resistance as follows:
 <!-- Unfortunately, GitHub Markdown doesn't yet support MathJax. -->
 
 <p align="center">
-    <img src="Images/Equation1.png" height="50">
+    <img src="Images/Equation-OhmsLaw.png" height="50">
 </p>
 
 where <i>V</i><sub>S</sub> and <i>V</i><sub>F</sub> are the supply voltage and LED forward voltage, <i>I</i><sub>F</sub> is the desired forward current through the LED, and <i>R</i> is the value of the resistor we need to use.
@@ -327,24 +331,28 @@ We will build our circuit using a solderless "breadboard" - as its name suggests
 The breadboard has a series of holes to fit the flexible legs of components, and the holes are connected together by a conductive back plate.
 
 <p align="center">
-  <img src="Images/Figure8.png" width="750px">
+  <img src="Images/Photo-Breadboard.png" width="800px">
 </p>
 
 By convention, the rows in the top and bottom of the image are used to provide supply (+) and ground connections (-).
 Rows and columns can be connected using jumper wires or, to keep things tidy, small pieces of flexible wire or solder.
 Jumper wires are used to make connections to the GPIO pins on the RPi.
 
-Wire up the LED as shown in the following image.
+Wire up the LED as shown in the following schematic (created with [Fritzing](http://fritzing.org/home/)).
 (You can identify the cathode connection on the LED as the longest of the four legs, and the legs are ordered red, cathode, green, blue - see the [data sheet](https://cdn.shopify.com/s/files/1/0174/1800/files/YH5MMRGBC-4YW.pdf) for a diagram).
+
+<p align="center">
+  <img src="Images/Schematic-LED.png" width="750">
+</p>
 
 You will need to bend the legs to push it into the breadboard; after you've done so, check none of them are touching.
 Also note that we have used one of the (-) connected rows as our ground connection - this is not necessary at this stage, but doing so now allows the rail to be shared with other components later.
 
 <p align="center">
-  <img src="Images/Figure9.png" width="500">
+  <img src="Images/Photo-LED.png" width="500">
 </p>
 
-Next, we need connect the circuit up to the Pi.
+Once we've set up the breadboard, we need connect the circuit up to the Pi.
 The GPIO pins on the Pi use a non-intuitive numbering scheme (this is because of the way they are connected to the SoC), so it helps to use a reference like [pinout.xyz](https://pinout.xyz) as a guide.
 The image below is reproduced from this site; pin 1 (3V3) is the pin closest to the SD card slot on the Zero W (the website has a larger, clearer diagram that is easier to follow).
 
@@ -413,6 +421,18 @@ The LED should light up for ten seconds and then switch off.
 You can try editing the script to change the colour (`nano "LEDTest.py"`) - you should be able to see the three colours turn on with different brightnesses.
 (Note that, because of the clear plastic housing, most "mixed" colours don't show as one colour; in a practical device - e.g. something like a Philips Hue light bulb - a white diffuser would be added to produce a more even colour.)
 
+<table>
+  <tr>
+    <td width="100">
+      <img src="Images/QuestionMarkSymbol.png" width="100" />
+    </td>
+    <td>
+      If any of the colours on your LED don't work, or if the LED flickers when lit, check the electrical connections on your breadboard.
+      If the LED lights the same colour when you switch on different pins from your code (and you've checked your wiring), make sure the legs aren't touching.
+    </td>
+  </tr>
+</table>
+
 The `RGBLED` object also has in-built functions to make the LED blink and fade between two colours.
 Edit your script as follows then run it again from the command line:
 
@@ -464,11 +484,12 @@ Playing around is encouraged.
       To get 50 % brightness, the software sets the duty cycle to 50 %; to get 80 %, it sets it to 80 %, and so on.
       As long as the wave period is faster than the human eye can perceive (about 50 Hz), we don't see the flickering and see an averaged brightness.
       This technique is called "pulse width modulation" (PWM).
+      You can also use this to output an audio waveform to a connected speaker (a technique sometimes called "bit banging"), but it really only works well for continuous tones.
     </td>
   </tr>
 </table>
 
-<hr />
+<hr>
 
 
 ## 3. Electronics 2: Photoresistors and analogue-to-digital converters <a name="Sec3"></a>
@@ -483,7 +504,7 @@ We will therefore need to use an analogue-to-digital converter (ADC) chip - the 
 A connection diagram is shown below - as you can see, there are a lot of connections.
 
 <p align="center">
-  <img src="Images/Figure10.png" width="250" />
+  <img src="Images/MCP3008.png" width="250" />
 </p>
 
 The connections on the left-hand side of the diagram are the analogue inputs.
@@ -499,11 +520,15 @@ Finally, the MCP3008 communicates with controllers using the serial peripheral i
 3. D<sub>OUT</sub> is for the chip to send data to the Pi ("MISO" - <u>m</u>aster <u>i</u>n <u>s</u>lave <u>o</u>ut)
 4. Finally, the CS ("chip select") pin is to allow the MCP3008 to work alongside other SPI devices (we will not be doing this, but it still needs to be connected).
 
-Set up the MCP3008 and photocell on your breadboard as in the photo below (note the orientation of the notch on the MCP3008).
+Set up the MCP3008 and photocell on your breadboard as in the schematic/photo below (note the orientation of the notch on the MCP3008).
 Connect the V<sub>DD</sub> and V<sub>REF</sub> to the power rail (+), and the DGND and AGND pins to the ground rail (-).
 
 <p align="center">
-  <img src="Images/Figure11.png" width="750">
+  <img src="Images/Schematic-MCP3008.png" width="750">
+</p>
+
+<p align="center">
+  <img src="Images/Photo-MCP3008.png" width="500">
 </p>
 
 Make a connection from the power rail (+) to the 3V3 pin on the RPi, and connect the ground rail (-) to one of the ground pins as for the LEDs.
@@ -516,10 +541,24 @@ The Pi supports hardware SPI connections using one of two sets of pins - we will
 * D<sub>OUT</sub> -> pin 9 (MISO)
 * CS -> pin 8 (CE0)
 
-The power source for the photocell is again the 3V3 pin on the RPi.
-The current flows to ground through the CH0 input on the ADC chip, and the photocell is also connected to the ground rail through a high-value resistor (10 k&Omega;) - this is to make sure the zero can be clearly read out.
+We use the 3V3 rail (shared with the MCP3008) to power the photocell.
+The photocell is connected with an additional 2 k&Omega; resistor to form a voltage divider.
+A voltage divider circuit has two resistors connected in series, as in the following circuit diagram (from [Wikipedia](https://en.wikipedia.org/wiki/Voltage_divider)):
 
-Connect to the Pi again, go into your work folder, create a new script file (e.g. "ADCTest.py"), and add the following:
+<p align="center">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Resistive_divider2.svg/200px-Resistive_divider2.svg.png" width="200px">
+</p>
+
+If you compare the diagram to your circuit, V<sub>in</sub> = 3.3 V is the connection to the RPi, <i>R</i><sub>1</sub> is the photocell (which has a variable resistance), and <i>R</i><sub>2</sub> is the fixed resistor.
+The output voltage V<sub>out</sub> is read by the ADC chip and is given by the following equation:
+
+<p align="center">
+    <img src="Images/Equation-VoltageDivider.png" height="50">
+</p>
+
+The purpose of the second resistor is to adjust the voltage through the ADC chip to the range it can measure (between GND = 0 V and V<sub>REF</sub> = 3.3 V in our circuit).
+
+Connect to the Pi again, go into your work folder, create a new script file (e.g. "ADCTest.py"), and add the following code:
 
 ```python
 import gpiozero
@@ -577,7 +616,23 @@ Use something opaque to cover the photocell (e.g. a piece of card), and you shou
   </tr>
 </table>
 
-<hr />
+<br>
+
+<table>
+  <tr>
+    <td width="100">
+      <img src="Images/InformationSymbol.png" width="100" />
+    </td>
+    <td>
+      The ADC chip converts the analogue voltage signal to the closest of a set of equally-spaced discrete values between GND (0 V) and V<sub>REF</sub> (3.3 V).
+      The MCP3008 is a 10-bit ADC, so the voltage is discretised into 2<sup>10</sup> = 1,024 values.
+      (If required, higher-precision ADCs, such as the 12-bit MCP3208 and the 16-bit ADS1115, are also widely available - these would divide the same signal into 2<sup>12</sup> = 4,096 and 2<sup>16</sup> = 65,536 levels, respectively.)
+      Your choice depends mainly on how small a difference in voltage you need to be able to measure.
+    </td>
+  </tr>
+</table>
+
+<hr>
 
 
 ## 4. Electronics 3: A DIY colourimeter <a name="Sec4"></a>
@@ -587,7 +642,11 @@ As in a laboratory UV/vis spectrometer, our medium will be a solution in a plast
 Reconnect the LED, this time angled toward the photocell with an ~1 cm gap to the photocell.
 
 <p align="center">
-  <img src="Images/Figure12.png" width="750px">
+  <img src="Images/Schematic-Complete.png" width="750px">
+</p>
+
+<p align="center">
+  <img src="Images/Photo-Complete.png" width="750px">
 </p>
 
 Connect to the RPi, go to your work folder, create a new script file (e.g. "Measure.py"), and combine the code from the previous two sections:
@@ -810,7 +869,7 @@ Verify that the output file was created and contains the data you expect.
 
 If you're following the code, you might notice one more problem that we ought to solve: if we forget to rename the output file after each measurement or don't change the hard-coded file name in our script, we may end up overwriting data from a previous run.
 
-To avoid this, we can specify a desired "prefix" for our file names (e.g. "Data") and check whether "<prefix>.csv" exists; if it does, append 2, 3, 4, ... until we find an unused file name.
+To avoid this, we can specify a desired "prefix" for our file names (e.g. "Data") and check whether "&lt;prefix&gt;.csv" exists; if it does, append 2, 3, 4, ... until we find an unused file name.
 
 This can be done as follows:
 
@@ -843,19 +902,19 @@ if os.path.isfile(output_file):
 ```
 
 We import the `os` module for the `os.path.isfile()` function.
-As its name suggests, this takes a file name as an argument and returns `True` if the file exists or `False` if not.
+As its name suggests, this takes a file name as an argument and returns `True` if the file exists or `False` if it doesn't.
 
-We define an initial test file name of "<output_prefix>.csv" and check whether this exists.
-If it does, we set up a `while` loop and increment a `file_number`, which we use to build alternative file names of the form "<output_prefix>-<file_number>.csv".
+We define an initial test file name of "&lt;output_prefix&ht;.csv" and check whether this exists.
+If it does, we set up a `while` loop and increment a `file_number`, which we use to build alternative file names of the form "&lt;output_prefix&ht;-&lt;file_number&gt;.csv".
 We keep counting until we get a file name that doesn't exist, then `break` out of the loop.
 
 If you decide to follow this step, you can check to make sure it's working by running the script a couple of times and checking that the files don't get overwritten.
 
 You might wonder whether a more logical thing to do would be to name the file with the date/time when the measurements were started, as most instrument software does.
-Unfortunately, however, the Pi doesn't have a "real time clock" (RTC) to keep track of the time while powered off, so its time is not reliable.
-It is, however, perfectly possible to add an RTC using the GPIO pins.
+Unfortunately, the Pi doesn't have a "real time clock" (RTC) to keep track of the time while it's powered off, so getting a date/time in our script would not be reliable.
+It is, however, possible to add an RTC using the GPIO pins.
 
-<hr />
+<hr>
 
 
 ## 5. Sumary and next steps <a name="Sec5"></a>
@@ -863,9 +922,11 @@ It is, however, perfectly possible to add an RTC using the GPIO pins.
 This part of this experiment shows how Python can be used with a microcontroller to control hardware and build a  simple prototype device.
 Hopefully you can see the appeal - we've been able to build and program a functional colourimeter in just a few hours of work!
 
-If you look online, you will find companies like [Adafruit Industries](https://www.adafruit.com) and [Pimoroni](https://shop.pimoroni.com) that provide "packaged" components alongside tutorials for connecting them to a Pi and controlling them from software.
-This includes everything from sensors to servo motors, LEDs and touch screens.
-This makes it very easy to get prototype devices up and running quickly and cheaply, and you then have the flexibility to adapt them to the requirements of your project as it evolves.
+If you look online, you will find companies like [Adafruit Industries](https://www.adafruit.com) and [Pimoroni](https://shop.pimoroni.com) that provide a huge range of "packaged" components alongside tutorials for connecting them to a Pi and controlling them from software.
+The list includes everything from sensors to servo motors, LEDs and touch screens, and makes it very easy to get a prototype device up and running quickly and cheaply - plus you then have the flexibility to adapt it for your project as it evolves.
+
+We don't have time to cover it in this practical, but it is perfectly possible to write a graphical user interface (GUI) in Python, and/or to program a Pi to send data to a program running on another computer.
+Build a good interface and a proper case for the Pi and components (a lot of people use 3D printers to do this!), and you've pretty much got an instrument.
 
 For reference, here is the complete measurement code, including the extension task above, with a few comments added to explain what each section of the script does.
 
@@ -962,12 +1023,13 @@ with open(output_file, 'w') as output_writer:
         print("{0:.3f} s : {1:.3f}".format(t_ave, v_ave))
 ```
 
-<hr />
+<hr>
 
 
 ## 6. Appendix <a name="Sec6"></a>
 
 The information in this section is intended for people who are interested in recreating this system themselves, and does not form part of the practical.
+
 
 ### a. Parts list <a name="Sec6a"></a>
 
@@ -991,11 +1053,13 @@ For single setups, most of the electronic components can be bought in smaller de
 | 10 &times; jumper wires          | £ 2.02 | Farnell 2452749              | PSG-JMP150MF       |
 | 0.5 mm lead-free solder          | £23.00 | RS Components 624-6729       | 5540940520 1037    |
 
+
 ### b. Raspberry Pi setup <a name="Sec6b"></a>
 
 * Configuring the Zero W as a WiFi hostpot: [https://www.raspberrypi.org/documentation/configuration/wireless/access-point.md](https://www.raspberrypi.org/documentation/configuration/wireless/access-point.md)
 
 * Configuring the Zero W as an ethernet gadget: [https://gist.github.com/gbaman/975e2db164b3ca2b51ae11e45e8fd40a](https://gist.github.com/gbaman/975e2db164b3ca2b51ae11e45e8fd40a)
+
 
 ### c. Troubleshooting connections <a name="Sec6c"></a>
 
@@ -1003,7 +1067,7 @@ If Windows 10 fails to recognise a Pi Zero W configured as an ethernet gadget as
 A solution to this problem, documented [here](https://www.factoryforward.com/pi-zero-w-headless-setup-windows10-rndis-driver-issue-resolved/), is to use the Device Manager to manually install the [MOD Duo RNDIS driver](http://web1.moddevices.com/shared/mod-duo-rndis.zip).
 This is well documented on the [MOD Devices Wiki](https://wiki.moddevices.com/wiki/Troubleshooting_Windows_Connection).
 
-<hr />
+<hr>
 
 
 ## 7. Notes and references <a name="Sec7"></a>
