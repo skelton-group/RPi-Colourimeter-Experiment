@@ -91,7 +91,7 @@ Switch the Pi on by connecting the power supply.
 The green light next to the USB power connector should light up to show it is booting.
 
 Wait a minute or so for it to finish, then use a laptop to scan for wireless networks.
-Once the hotspot appears, join it using the password `r@5pb377y`.
+Once the hotspot appears, join it using the password `Pa$$w07d`.
 
 <p align="center">
   <img src="Images/Screen-WiFiConnect.png" width="375">
