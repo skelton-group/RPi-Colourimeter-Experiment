@@ -151,7 +151,7 @@ This allows Linux shell commands to be sent to the Pi.
 
 ### c. A short Linux (Bash) shell primer <a name="Sec1c"></a>
 
-Those already familiar with the Linux Bash shell may skip this section; for everyone else, the following is a quick demonstration of some of the basic commands required to work with the Pi:
+Those already familiar with the Linux Bash shell may skip this section; for everyone else, the following is a quick demonstration of some of the basic commands required to work with the Pi.:
 
 ```bash
 $ pwd
@@ -162,29 +162,39 @@ The `pwd` command prints the current working directory.
 The location `/home/pi` is the Linux equivalent of the User folder on Windows (e.g. `C:\Users\jskelton\`) and is equivalent to the Home folder on MacOS.
 
 ```bash
-$ ls
-
-$ mkdir "Practical"
+$ mkdir Practical
 $ ls
 Practical
 ```
 
 The `ls` command, without any arguments, prints out (lists) the contents of the current directory.
-`mkdir "Practical"` makes a new directory (folder) called "Practical".
+`mkdir Practical` makes a new directory (folder) called "Practical".
 Running `ls` again confirms that the directory was created successfully.
 
 ```bash
-$ cd "Practical"
+$ cd Practical
 $ pwd
 /home/pi/Practical
 ```
+
+<table>
+  <tr>
+    <td width="100">
+      <img src="Images/InformationSymbol.png" width="100">
+    </td>
+    <td>
+      It is NOT recommended for directory or file names to contain spaces. Instead, use underscores "_" to connect words in file or directory names. This is because Linux uses spaces to distinguish between arguments of a command. If spaces need to be in the file/directory name, then a `\` (escape) character needs to be used before the space to evaluate the space as a literal value.
+    </td>
+  </tr>
+</table>
+
 
 `cd "<directory>"` is used to change directory; typing `pwd` again confirms that the working directory is now the "Practical" folder created with the `mkdir` command.
 
 There are a number of command-line text editors that can be used to create and edit files on Linux systems, for example `nano`:
 
 ```bash
-$ nano "Test.py"
+$ nano Test.py
 ```
 
 This creates an empty file called "Test.py" and displays it in an editor interface like the screenshot below.
@@ -208,12 +218,11 @@ The script can be run from the command line using the `python` command:
 ```bash
 $ python "Test.py"
 Hello, Pi!
-
 ```
 
-The `python` command starts the Python interpreter and instructs it to run the script file passed as an argument.
+The `python` command starts the Python interpreter and instructs it to run the script file passed as an argument. 
 
-The `exit` command disconnects the SSH session and closes the connection:
+The `exit` command disconnects the SSH session and closes the connection to the Pi (the Pi remains switched on even if the SSH session is closed!):
 
 ```bash
 $ exit
@@ -282,12 +291,20 @@ In the screenshot above, the browser is in the `/home/pi` directory, with the "P
 Files can be dragged and dropped from one pane to the other to transfer in either direction.
 There are also options to create files and folders, and double-clicking a file on the Pi will open it in a text editor that can be used as an alternative to `nano` if desired.
 
-Note that WinSCP does not update the browser window on the remote machine automatically, so after creating a file from the command line (e.g. by running a program) it may be necessary to right-click > "Refresh" in the second pane to see it.
+<table>
+  <tr>
+    <td width="100">
+      <img src="Images/InformationSymbol.png" width="100">
+    </td>
+    <td>
+      Note that WinSCP does not update the browser window on the remote machine automatically, so after creating a file from the command line (e.g. by running a program) it may be necessary to right-click > "Refresh" in the second pane to see it.
+    </td>
+  </tr>
+</table>
 
-(For Mac users: WinSCP is a Windows-only program, but [FileZilla](https://filezilla-project.org) is a good alternative.)
+For Mac users: WinSCP is a Windows-only program, but [FileZilla](https://filezilla-project.org) is a good alternative.
 
 <hr>
-
 
 ## 2. Building the photometer <a name="Sec2"></a>
 
@@ -301,7 +318,7 @@ For this practical, an RGB (<u>r</u>ed, <u>g</u>reen, <u>b</u>lue) LED has been 
 LEDs are electroluminescent devices that produce photons of light by passing an electrical current through a semiconductor material.
 The material used in the LED determines the the emission wavelength (colour) - this particular LED uses an InAlGaP alloy for the red emitter (&lambda;<sub>max</sub> = 620 nm) and InGaN alloys for the green and blue emitters (&lambda;<sub>max</sub> = 525/460 nm).
 
-LEDs require two connections: an anode, connected to a power supply, and a cathode, through which current flows to the ground.
+LEDs require two connections: an anode (+), connected to a power supply, and a cathode (-), through which current flows to the ground.
 An RGB LED has three anodes, one for each semiconductor, and a common (shared) cathode.
 
 LEDs require a minimum forward voltage to emit light - shorter-wavelength emission generally requires a higher voltage, while longer-wavelength emission requires a lower voltage.
@@ -310,7 +327,7 @@ From the [data sheet](https://cdn.shopify.com/s/files/1/0174/1800/files/YH5MMRGB
 The brightness of an LED is proportional to the current flowing through it.
 The three independent LEDs are each designed to operate at a typical 20 milliamp (mA) forward current, and the anode connections must be made through an appropriate resistor to limit the current at or below this level - otherwise the LED will quickly burn out.
 
-Ohm's is used to calculate the required resistance as follows:
+Ohm's Law is used to calculate the required resistance as follows:
 
 <!-- Unfortunately, GitHub Markdown doesn't yet support MathJax. -->
 
