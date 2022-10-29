@@ -325,41 +325,27 @@ LEDs require a minimum forward voltage to emit light - shorter-wavelength emissi
 From the [data sheet](https://cdn.shopify.com/s/files/1/0174/1800/files/YH5MMRGBC-4YW.pdf?18352150365029489229), the red and green/blue semiconductors are rated for forward voltages of 2.1 and 3.2 V respectively.
 
 The brightness of an LED is proportional to the current flowing through it.
-The three independent LEDs are each designed to operate at a typical 20 milliamp (mA) forward current, and the anode connections must be made through an appropriate resistor to limit the current at or below this level - otherwise the LED will quickly burn out.
+The three independent LEDs are each designed to operate at a typical 20 milliamp ($mA$) forward current, and the anode connections must be made through an appropriate resistor to limit the current at or below this level - otherwise the LED will quickly burn out.
 
 Ohm's Law is used to calculate the required resistance as follows:
 
-<!-- Unfortunately, GitHub Markdown doesn't yet support MathJax. -->
+$$
+\left ( V_S - V_F \right) = I_F R \quad \therefore \quad R = \frac{V_S - V_F}{I_F}
+$$
 
-<p align="center">
-    <img src="Images/Equation-OhmsLaw.png" height="50">
-</p>
+where $V_S$ and $V_F$  are the (power) supply voltage and LED forward voltage (in Volts, $V$), $I_F$  is the desired forward current (In amps, $A$) through the LED, and $R$ is the required resistance (In Ohms, $\Omega$).
 
-```math
-\left ( V_S - V_F \right) = I_F R \therefore R = \frac{V_S - V_F}{I_F}
-```
-
-where <i>V</i><sub>S</sub> and <i>V</i><sub>F</sub> are the (power) supply voltage and LED forward voltage, <i>I</i><sub>F</sub> is the desired forward current through the LED, and <i>R</i> is the required resistance.
-
-The GPIO pins on the Pi can supply a maximum *total* 50 mA of current at 3.3 V, and around 15 mA on any one pin, so <i>V</i><sub>S</sub> = 3.3 V and <i>I</i><sub>F</sub> = 15 &times; 10<sup>-3</sup> A.
-Using <i>V</i><sub>F</sub> = 2.1, an 80 &Omega; resistor would be required for the red anode.
-Using <i>V</i><sub>F</sub> = 3.2 V, 6.7 &Omega; resistors would be required for the green and blue anodes.
+The GPIO pins on the Pi can supply a maximum **total** $50 \: mA$ of current at $3.3 \: V$, and around $15 \: mA$ on any one pin, so $V_S = 3.3 \: V$ and $I_F = 15 \times 10^{-3} \: A$.
+Using $V_F = 2.1$, an $80 \: \Omega$ resistor would be required for the red anode. Using $V_F = 3.2 \: V$, $6.7 \: \Omega$ resistors would be required for the green and blue anodes.
 
 Resistors are manufactured in a wide range of standard values, and resistors with the required or *higher* value should be selected - using a resistor with a higher resistance simply limits the current and decreases the LED brightness proportionally.
-For this setup, 105 and 12.5 &Omega; resistors have been provided.
+For this setup, $105 \: \Omega$ and $12.5 \: \Omega$ resistors have been provided.
 
-<table>
-  <tr>
-    <td width="100">
-      <img src="Images/InformationSymbol.png" width="100">
-    </td>
-    <td>
-      Resistors typically have a set of 4-6 coloured bands printed on the housing that indicate the resistance and the tolerance.
-      The easiest way to convert the band colours to resistance values is to use as website such as <a href="https://www.digikey.co.uk/en/resources/conversion-calculators/conversion-calculator-resistor-color-code-4-band">this one</a>).
-      However, it is usually more reliable to check with a multimeter - set the meter to the appropriate mode (e.g. the 200 &Omega; setting for <i>R</i> < 200 &Omega;), touch the probes to the legs on the resistor, and read the resistance from the display.
-    </td>
-  </tr>
-</table>
+<img align="left" src="Images/InformationSymbol.png" width="100"/>
+
+Resistors typically have a set of 4-6 coloured bands printed on the housing that indicate the resistance and the tolerance.
+The easiest way to convert the band colours to resistance values is to use as website such as <a href="https://www.digikey.co.uk/en/resources/conversion-calculators/conversion-calculator-resistor-color-code-4-band">this one</a>).
+However, it is usually more reliable to check with a multimeter - set the meter to the appropriate mode (e.g. the $200 \: \Omega$ ; setting for $R < 200 \: \Omega $), touch the probes to the legs on the resistor, and read the resistance from the display.
 
 The circuit will be built using a solderless "breadboard" - as its name suggests, this allows components to be connected together without having to solder the connections.
 The breadboard has a series of holes to fit the flexible legs of standard components, and sets of holes are connected together by a conductive back plate as shown in the image below.
