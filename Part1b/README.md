@@ -335,6 +335,10 @@ Ohm's Law is used to calculate the required resistance as follows:
     <img src="Images/Equation-OhmsLaw.png" height="50">
 </p>
 
+```math
+\left ( V_S - V_F \right) = I_F R \therefore R = \frac{V_S - V_F}{I_F}
+```
+
 where <i>V</i><sub>S</sub> and <i>V</i><sub>F</sub> are the (power) supply voltage and LED forward voltage, <i>I</i><sub>F</sub> is the desired forward current through the LED, and <i>R</i> is the required resistance.
 
 The GPIO pins on the Pi can supply a maximum *total* 50 mA of current at 3.3 V, and around 15 mA on any one pin, so <i>V</i><sub>S</sub> = 3.3 V and <i>I</i><sub>F</sub> = 15 &times; 10<sup>-3</sup> A.
