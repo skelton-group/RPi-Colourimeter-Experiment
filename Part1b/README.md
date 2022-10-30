@@ -109,6 +109,17 @@ This allows Linux shell commands to be sent to the Pi.
 
 ### 1.3. A short Linux (Bash) shell primer <a name="Sec1c"></a>
 
+<table>
+  <tr>
+    <td width="100">
+      <img src="Images/InformationSymbol.png" width="100">
+    </td>
+    <td>
+      the Tab button can be used to autocomplete commands as well as file or directory names in the terminal.
+    </td>
+  </tr>
+</table>
+
 Those already familiar with the Linux Bash shell may skip this section; for everyone else, the following is a quick demonstration of some of the basic commands required to work with the Pi.:
 
 ```bash
