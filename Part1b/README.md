@@ -155,7 +155,7 @@ There are a number of command-line text editors that can be used to create and e
 $ nano Test.py
 ```
 
-This creates an empty file called "Test.py" and displays it in an editor interface like the screenshot below.
+This creates an empty file called Test.py and displays it in an editor interface like the screenshot below.
 Enter the following very simple Python script:
 
 ```python
@@ -174,7 +174,7 @@ Exit the editor by typing `Ctrl + X`.
 The script can be run from the command line using the `python` command:
 
 ```bash
-$ python "Test.py"
+$ python Test.py
 Hello, Pi!
 ```
 
