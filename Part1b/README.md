@@ -1,56 +1,18 @@
 # Building a DIY photometer using a Raspberry Pi
 
-Part 1b of the practical will use some of the Python basics from Part 1a to build and program a do-it-yourself photometer based around a Raspberry Pi (RPi) microcomputer.
+Part 1b of the practical will use some of the Python basics from Part 1a to build and program a do-it-yourself photometer based around a Raspberry Pi (RPi) microcomputer. The Table of Contents for Part 1b can be found by pressing the button shown below:
+
+<p align="center">
+  <img src="Images/show_table_of_contents.png" width="500">
+</p>
 
 Part 2 will then use the photometer to study the kinetics of the oxidation reaction between NaClO (household bleach) and Brilliant Blue FCF food dye.
 
 <hr>
 
-
-## Contents
-
-<ol>
-  <li>
-    <a href="#Sec1">RPi basics</a>
-    <ol type="a">
-      <li><a href="#Sec1a">Getting started</a></li>
-      <li><a href="#Sec1b">Accessing the Pi OS over secure shell (SSH)</a></li>
-      <li><a href="#Sec1c">A short Linux (Bash) shell primer</a></li>
-      <li><a href="#Sec1d">File transfer with WinSCP</a></li>
-    </ol>
-  </li>
-  <li>
-    <a href="#Sec2">Building the photometer</a></li>
-    <ol type="a">
-      <li><a href="#Sec2a">Electronics 1: LEDs</a></li>
-      <li><a href="#Sec2b">Electronics 2: Photodiodes and analogue-to-digital converters</a></li>
-      <li>
-        <a href="#Sec2c">Electronics 3: Measurement program</a>
-          <ol type="i">
-            <li><a href="#Sec2c_i">Averaging readings</a></li>
-            <li><a href="#Sec2c_ii">Writing data to a file</a></li>
-            <li><a href="#Sec2c_iii">Extension task 1: Measuring square and triangle waves</a></li>
-            <li><a href="#Sec2c_iv">Extension taks 2: Avoid overwriting previous data</a></li>
-          </ol>
-      </li>
-     </ol>
-   </li>
-  <li><a href="#Sec3">Summary and next steps</a></li>
-  <li>
-    <a href="#Sec4">Appendix</a>
-    <ol type="a">
-      <li><a href="#Sec4a">Parts list</a></li>
-      <li><a href="#Sec4b">Raspberry Pi setup</a></li>
-      <li><a href="#Sec4c">Alternative connection with USB</a></li>
-    </ol>
-  </li>
-  <li><a href="#Sec5">Notes and acknowledgements</a></li>
-</ol>
+## 1. RPi basics
 
 <hr>
-
-
-## 1. RPi basics <a name="Sec1"></a>
 
 The Raspberry Pis are a family of low-cost single-board computers created by the [Raspberry Pi Foundation](https://www.raspberrypi.org/about/) with the aim of encouraging more students into programming.
 
@@ -78,7 +40,7 @@ Most importantly, the board has a set of general-purpose input/output pins (GPIO
 The GPIO pins will be used to power and control the photometer hardware.
 
 
-### a. Getting started <a name="Sec1a"></a>
+### 1.1. Getting started
 
 The Pi has been set up with the "Raspbian" Linux operating system (OS).
 "Linux" is a family of free, open-source operating systems that provide an alternative to e.g. Windows or MacOS, and its uses range from high-performance computing (HPC) platforms for research to a wide variety of common "smart" devices, most notably Android phones which are based on a modified Linux "core".
@@ -110,7 +72,7 @@ Once the hotspot appears, join it using the password `Pa$$w07d`.
 </table>
 
 
-### b. Accessing the Pi OS over secure shell (SSH) <a name="Sec1b"></a>
+### 1.2. Accessing the Pi OS over secure shell (SSH) <a name="Sec1b"></a>
 
 Once connected to the hotspot, the Pi operating system can be accessed using the secure shell (`ssh`) protocol.
 SSH enables a local (client) computer to log in to a remote (server/host) machine over a network with a command-line interface (a "shell") that can be used to perform most, if not all, of the tasks that can be done using a graphical desktop (e.g. file management, starting and running programs, *etc*.).
@@ -149,7 +111,7 @@ This allows Linux shell commands to be sent to the Pi.
 </table>
 
 
-### c. A short Linux (Bash) shell primer <a name="Sec1c"></a>
+### 1.3. A short Linux (Bash) shell primer <a name="Sec1c"></a>
 
 Those already familiar with the Linux Bash shell may skip this section; for everyone else, the following is a quick demonstration of some of the basic commands required to work with the Pi.:
 
@@ -268,7 +230,7 @@ Here is a summary of these commands for quick reference (replace angle brackets 
 * `sudo shutdown now` : shutdown the Pi (also terminates the SSH session)
 
 
-### d. File transfer with WinSCP <a name="Sec1d"></a>
+### 1.4. File transfer with WinSCP <a name="Sec1d"></a>
 
 To transfer files to and from the Pi, it is convenient to use a graphical file-transfer program such as [WinSCP](https://winscp.net).
 WinSCP uses the secure file-transfer protocol (SFTP) to transfer files to and from a remote computer, and is a useful companion to an SSH client like PuTTY.
@@ -554,7 +516,7 @@ $$ V_{Out} = I_{PD} \times R_F$$
 Under direct illumination with a bright light source like an LED, the photodiode will produce a current $I_{PD}$ on the order $10 \: \mu A$ or $10^5 \: A$. Using the $3.3 \: V$ supply and $0 \: V$ ground from the Pi as the reference voltages, the op-amp will be able to produce a signal in the range of $0-3.3 \: V$. $R_F$ therefore needs to be on the order of $10^5 \: \Omega$ ($100 \: k\Omega$) to bring the signal into this range.
 
 ICs such as op-amps are usually bought packaged in microchip casings designed to be plugged directly into breadboards.
-This practical uses the `MCP602` op-amp, which comes packaged as a chip with eight connections:
+This practical uses the MCP602 op-amp, which comes packaged as a chip with eight connections:
 
 <p align="center">
   <img src="Images/MCP602.gif" width="250">
@@ -568,7 +530,7 @@ There are two op-amps (A and B) with three connections each (e.g. $V_{\text{INA-
       <img src="Images/WarningTriangle.png" width="100">
     </td>
     <td>
-      Note the semicircular notch along one side of the case - this allows the orientation of the chip to be established. Make sure the chip is oriented the correct way as the MCP602 chip will overheat and melt if it is not oriented the correct way.
+      Note the semicircular notch along one side of the case - this allows the orientation of the chip to be established. Ensure the chip is oriented the correct way as the MCP602 chip will overheat and melt if it is not connected correctly.
     </td>
   </tr>
 </table>
@@ -642,7 +604,7 @@ miso_pin = 9
 cs_pin = 8
 
 adc = gpiozero.MCP3008(
-    channel = 0,
+    channel = channel,
     clock_pin = clk_pin,
     mosi_pin = mosi_pin,
     miso_pin = miso_pin,
@@ -719,6 +681,8 @@ Optimising the electronics for these considerations is an important part of inst
 <hr>
 
 ## 3. Measurement program
+
+<hr>
 
 
 At this point, the LED light source and photodiode detector should be working, so the final step is to write a program to make continuous measurements and log them to a file.
@@ -1014,6 +978,8 @@ if os.path.isfile(output_file):
         
         file_number = file_number + 1
 
+print("Name of output file:", output_file)
+
 ...
 
 ```
@@ -1023,9 +989,9 @@ As its name suggests, this takes a file name as an argument and returns `True` i
 
 An initial test file name of "&lt;output_prefix&gt;.csv" is defined, and the script checks whether this exists.
 If it does, a `while` loop increments a `file_number`, which is used to build alternative file names of the form "&lt;output_prefix&gt;-&lt;file_number&gt;.csv".
-The loop keeps counting until a file name that doesn't exist is found, at which point is is broken using the `break` command.
+The loop keeps counting until a file name that doesn't exist is found, at which point is is broken using the `break` command. Finally, the script prints out the name of the output file where the data is going to be written.
 
-Check to make sure this is working by running the script a couple of times and verifying that a new output file is produced each time.
+Check to make sure the modified script is working by running a couple of times and verifying that a new output file is produced each time.
 
 An even more logical thing to do would be to name the file with the date/time when the measurement is started, as instrument software often does.
 Unfortunately, the Pi doesn't have a "real time clock" (RTC) to keep track of the time while it's powered off, so getting a date/time in scripts is not reliable.
@@ -1033,7 +999,7 @@ It is, however, possible to add an RTC using the GPIO pins, which could be done 
 
 <hr>
 
-## 4. Sumary and next steps <a name="Sec3"></a>
+## 4. Summary and next steps
 
 <hr>
 
@@ -1048,10 +1014,10 @@ The list includes everything from sensors to servo motors, LEDs and touch screen
 There isn't sufficient time to cover it in this practical, but it is perfectly possible to write a graphical user interface (GUI) in Python, and/or to program a Pi to send data to a program running on another computer.
 With a good software interface and a proper case to house the Pi, components and sample (this is a good task for a 3D printer), this would be a working instrument that other people could pick up and use like other benchtop spectrometers.
 
-For reference, here is the complete measurement code, including the second of the two extension tasks above, with some comments added to explain what each section of the script does.
-
 When ready, proceed to Part 2 - designing a series of experiments to use the photometer to make some kinetic measurements.
 (If you're going to break for the day, don't forget to shutdown the Pi.)
+
+For reference, here is the complete measurement code, including the second of the two extension tasks above, with some comments added to explain what each section of the script does.
 
 ```python
 import csv
@@ -1071,7 +1037,9 @@ miso_pin = 9
 cs_pin = 8
 channel = 0
 
-# Choose an output file (make sure we don't overwrite prvious files).
+sample_interval = 0.1
+
+# Choose an output file (make sure we don't overwrite previous files).
 
 output_prefix = "Data"
 
@@ -1088,14 +1056,14 @@ if os.path.isfile(output_file):
         
         file_number = file_number + 1
 
-sample_interval = 0.1
+print("Name of output file:", output_file)
 
 # Set up LED and MCP 3008 ADC chip.
 
 led = gpiozero.RGBLED(red = r_pin, green = g_pin, blue = b_pin)
 
 adc = gpiozero.MCP3008(
-    channel = 0,
+    channel = channel,
     clock_pin = clk_pin,
     mosi_pin = mosi_pin,
     miso_pin = miso_pin,
@@ -1142,6 +1110,7 @@ with open(output_file, 'w') as output_writer:
         
         print("{0:.3f} s : {1:.3f}".format(t_ave, v_ave))
 ```
+
 
 <hr>
 
@@ -1218,8 +1187,6 @@ MacOS supports this by default, whereas Windows will require the Apple [Bonjour]
     </td>
   </tr>
 </table>
-
-<hr>
 
 ## 6. Notes and acknowledgements
 
