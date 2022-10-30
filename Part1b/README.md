@@ -306,11 +306,11 @@ For Mac users: WinSCP is a Windows-only program, but [FileZilla](https://filezil
 
 <hr>
 
-## 2. Building the photometer <a name="Sec2"></a>
+## 2. Building the photometer
 
 <hr>
 
-### a. Electronics 1: LEDs <a name="Sec2a"></a>
+### 2.1. LEDs
 
 The first step is to build a circuit to power and control a light-emitting diode (LED) from a Python script running on the RPi - this will be used as the light source for the photometer.
 For this practical, an RGB (<u>r</u>ed, <u>g</u>reen, <u>b</u>lue) LED has been provided that can produce three different colours, allowing the software to select from three different wavelengths.
@@ -322,7 +322,7 @@ LEDs require two connections: an anode (+), connected to a power supply, and a c
 An RGB LED has three anodes, one for each semiconductor, and a common (shared) cathode.
 
 LEDs require a minimum forward voltage to emit light - shorter-wavelength emission generally requires a higher voltage, while longer-wavelength emission requires a lower voltage.
-From the [data sheet](https://cdn.shopify.com/s/files/1/0174/1800/files/YH5MMRGBC-4YW.pdf?18352150365029489229), the red and green/blue semiconductors are rated for forward voltages of 2.1 and 3.2 V respectively.
+From the [data sheet](https://cdn.shopify.com/s/files/1/0174/1800/files/YH5MMRGBC-4YW.pdf?18352150365029489229), the red and green/blue semiconductors are rated for forward voltages of $2.1$ and $3.2 \: V$ respectively.
 
 The brightness of an LED is proportional to the current flowing through it.
 The three independent LEDs are each designed to operate at a typical 20 milliamp ($mA$) forward current, and the anode connections must be made through an appropriate resistor to limit the current at or below this level - otherwise the LED will quickly burn out.
@@ -338,14 +338,18 @@ where $V_S$ and $V_F$  are the (power) supply voltage and LED forward voltage (i
 The GPIO pins on the Pi can supply a maximum **total** $50 \: mA$ of current at $3.3 \: V$, and around $15 \: mA$ on any one pin, so $V_S = 3.3 \: V$ and $I_F = 15 \times 10^{-3} \: A$.
 Using $V_F = 2.1$, an $80 \: \Omega$ resistor would be required for the red anode. Using $V_F = 3.2 \: V$, $6.7 \: \Omega$ resistors would be required for the green and blue anodes.
 
+### 2.2. Resistors
+
 Resistors are manufactured in a wide range of standard values, and resistors with the required or *higher* value should be selected - using a resistor with a higher resistance simply limits the current and decreases the LED brightness proportionally.
 For this setup, $105 \: \Omega$ and $12.5 \: \Omega$ resistors have been provided.
 
 <img align="left" src="Images/InformationSymbol.png" width="100"/>
 
 Resistors typically have a set of 4-6 coloured bands printed on the housing that indicate the resistance and the tolerance.
-The easiest way to convert the band colours to resistance values is to use as website such as <a href="https://www.digikey.co.uk/en/resources/conversion-calculators/conversion-calculator-resistor-color-code-4-band">this one</a>).
-However, it is usually more reliable to check with a multimeter - set the meter to the appropriate mode (e.g. the $200 \: \Omega$ ; setting for $R < 200 \: \Omega $), touch the probes to the legs on the resistor, and read the resistance from the display.
+The easiest way to convert the band colours to resistance values is to use as website such as [this one](href="https://www.digikey.co.uk/en/resources/conversion-calculators/conversion-calculator-resistor-color-code-4-band").
+However, it is usually more reliable to check with a multimeter - set the meter to the appropriate mode (e.g. the $200 \: \Omega$ ; setting for $R < 200 \: \Omega $), touch the probes to the legs on the resistor, and read the resistance from the display. The orientation of the resistor does not affect the reading of the multimeter.
+
+### 2.3. Breadboards <a name="Breadboards"></a>
 
 The circuit will be built using a solderless "breadboard" - as its name suggests, this allows components to be connected together without having to solder the connections.
 The breadboard has a series of holes to fit the flexible legs of standard components, and sets of holes are connected together by a conductive back plate as shown in the image below.
@@ -401,7 +405,7 @@ A total of four connections to the Pi are required:
 * The resistors on the red, green and blue anodes should be connected to one of the software-controlled "BCM" pins - use 17, 27 and 22.
 
 Once the circuit has been connected, boot up the Pi if required, connect to it again over SSH, and go into a working directory (e.g. "Practical").
-Open a new script in a text editor (e.g. `nano "LEDTest.py"`) and type or copy/paste the following code:
+Open a new script in a text editor (e.g. `nano LEDTest.py`) and type or copy/paste the following code:
 
 ```python
 import time
@@ -435,13 +439,13 @@ Since the LED is automatically turned off when the script finishes, a ten second
 Run the script with:
 
 ```bash
-python "LEDTest.py"
+python LEDTest.py
 ```
 
 (Replace `LEDTest.py` with your chosen file name if required.)
 
 The LED should light up for ten seconds and then switch off.
-Try editing the script to change the colour (`nano "LEDTest.py"`) - it should be possible to see the three colours turn on and off with different brightnesses.
+Try editing the script to change the colour (`nano LEDTest.py`) - it should be possible to see the three colours turn on and off with different brightnesses.
 (Note that, because of the clear plastic housing, most "mixed" colours don't show as one colour; in an LED designed for lighting - e.g. something like a Philips Hue light bulb - a white diffuser would be added to produce a more even colour.)
 
 <table>
@@ -512,10 +516,7 @@ Feel free to experiment.
   </tr>
 </table>
 
-<hr>
-
-
-### b. Electronics 2: Photodiodes and analogue-to-digital converters <a name="Sec2b"></a>
+### 2.4. Photodiodes and Operational Amplifiers (Op-amps)
 
 The next step is to connect the Pi to a photodiode to measure light levels.
 A photodiode performs the reverse function to an LED - photons of light absorbed by the semiconductor promote electrons across the bandgap and produce a small (photo)current, which can be amplified and measured.
@@ -545,30 +546,35 @@ An op-amp also needs a pair of reference voltages supplied to set the range the 
 In the transimpedence amplifier, the photodiode anode is connected to the ground and the cathode is connected to the inverting (-) input of the amplifier.
 The non-inverting (+) input is also connected to the ground.
 
-The amplifier output, where the output voltage <i>V</i><sub>Out</sub> is measured, is connected back to the inverting (-) input across a feedback resistor with a resistance <i>R</i><sub>F</sub>.
-This produces an output voltage <i>V</i><sub>Out</sub> proportional to the photocurrent <i>I</i><sub>P</sub> according to:
+The amplifier output, where the output voltage $V_{Out}$ is measured, is connected back to the inverting (-) input across a feedback resistor with a resistance $R_F$.
+This produces an output voltage $V_{Out}$ proportional to the photocurrent $I_{PD}$ according to:
 
-<p align="center">
-    <img src="Images/Equation-TransconductanceAmplifier.png" height="20">
-</p>
+$$ V_{Out} = I_{PD} \times R_F$$
 
-Under direct illumination with a bright light source like an LED, the photodiode will produce an <i>i</i><sub>P</sub> on the order 10 &mu;A (10<sup>-5</sup> A).
-Using the 3.3 V supply and 0 V ground from the Pi as the reference voltages, the op-amp will be able to produce a signal in the range of 0-3.3 V.
-<i>R</i><sub>F</sub> therefore needs to be on the order of 10<sup>5</sup> &Omega; (100 k&Omega;) to bring the signal into this range.
+Under direct illumination with a bright light source like an LED, the photodiode will produce a current $I_{PD}$ on the order $10 \: \mu A$ or $10^5 \: A$. Using the $3.3 \: V$ supply and $0 \: V$ ground from the Pi as the reference voltages, the op-amp will be able to produce a signal in the range of $0-3.3 \: V$. $R_F$ therefore needs to be on the order of $10^5 \: \Omega$ ($100 \: k\Omega$) to bring the signal into this range.
 
 ICs such as op-amps are usually bought packaged in microchip casings designed to be plugged directly into breadboards.
-This practical uses the MCP602 op-amp, which comes packaged as a chip with eight connections:
+This practical uses the `MCP602` op-amp, which comes packaged as a chip with eight connections:
 
 <p align="center">
   <img src="Images/MCP602.gif" width="250">
 </p>
 
-There are two op-amps (A and B) with three connections each (e.g. V<sub>INA-</sub>, V<sub>INA+</sub> and V<sub>OUTA</sub>), plus connections for the two voltage references (V<sub>DD</sub> and V<sub>SS</sub>).
-Note the semicircular notch along one side of the case - this allows the orientation of the chip to be established.
+There are two op-amps (A and B) with three connections each (e.g. $V_{\text{INA-}}$ , $V_{\text{INA+}}$ and $V_{\text{OUTA}}$), plus connections for the two voltage references ($V_{DD}$ and $V_{SS}$).
 
-Connect the diode, amplifier and a 100 k&Omega; feedback resistor as shown in the schematic below.
-(The longer leg of the photodiode is the anode and should be connected to the ground; also note the orientation of the notch on the MCP602).
-The diode needs to be angled to point at the LED, leaving a 1 cm gap for a standard cuvette plus some additional space to allow the cuvette to be inserted and removed without disturbing the components.
+<table>
+  <tr>
+    <td width="100">
+      <img src="Images/WarningTriangle.png" width="100">
+    </td>
+    <td>
+      Note the semicircular notch along one side of the case - this allows the orientation of the chip to be established. Make sure the chip is oriented the correct way as the MCP602 chip will overheat and melt if it is not oriented the correct way.
+    </td>
+  </tr>
+</table>
+
+Connect the diode, amplifier and a $100 \: k\Omega$ feedback resistor as shown in the schematic below.
+(The longer leg of the photodiode is the anode and should be connected to the ground). The diode needs to be angled to point at the LED, leaving a 1 cm gap for a standard cuvette plus some additional space to allow the cuvette to be inserted and removed without disturbing the components.
 The connections can be made using either male-to-male jumper wires or spare wire trimmed from component legs.
 
 <p align="center">
@@ -579,15 +585,15 @@ The connections can be made using either male-to-male jumper wires or spare wire
   <img src="Images/Photo-Photodiode.png" width="750">
 </p>
 
-Like the op-amp, the ADC is also supplied as a packaged microchip - the MCP3008.
-A connection diagram is shown below.
+### 2.5. Analog to Digital Converters (ADCs)
+
+Like the op-amp, the Analog to Digital Converter (ADC) is also supplied as a packaged microchip - the MCP3008. A connection diagram is shown below.
 
 <p align="center">
   <img src="Images/MCP3008.png" width="250">
 </p>
 
-The connections on the left-hand side of the diagram are the analogue inputs.
-The MCP3008 has eight input channels (CH0-CH7) that can be selected by sending appropriate control signals to the chip.
+The connections on the left-hand side of the diagram are the analogue inputs. The MCP3008 has eight input channels (CH0-CH7) that can be selected by sending appropriate control signals to the chip.
 
 The logic in the chip requires power and ground connections on <i>V</i><sub>DD</sub> and DGND.
 The voltage on the input channels is digitised relative to a reference voltage connected to <i>V</i><sub>REF</sub> and the channels are grounded to a second ground connection AGND.
@@ -712,8 +718,8 @@ Optimising the electronics for these considerations is an important part of inst
 
 <hr>
 
+### 3. Measurement program
 
-### c. Electronics 3: Measurement program <a name="Sec2c"></a>
 
 At this point, the LED light source and photodiode detector should be working, so the final step is to write a program to make continuous measurements and log them to a file.
 
@@ -764,7 +770,7 @@ This code does most of what the photometer is required to do - it activates the 
 Before moving on to some "production" experiments, two further improvements can be made:
 
 
-#### i. Averaging readings <a name="Sec2c_i"></a>
+### 3.1. Averaging readings
 
 As it is now, the code prints readings from the photodiode as fast as it can collect them, which is more than 100 samples/s.
 Unless trying to measure a very fast reaction, it is be prudent to limit the sample rate to avoid collecting an unweildy amount of data - if a reaction takes, say, 5 mins (600 s) to complete, during that time the script would collect ~100 &times; 600 = 60,000 data points (!).
@@ -820,9 +826,9 @@ while True:
 The modified loop body does the following:
 
 * Set up an empty list to collect values
-* Record a start time `t_1`
+* Record a start time `t_1`.
 * Run a second `while` loop which adds readings to the list until the current time minus `t_1` exceeds `sample_interval` (i.e. until the script has collected data for roughly the desired interval)
-* Record an end time `t_2`
+* Record an end time `t_2`.
 * Take the midpoint of `t_1` and `t_2` as `t_1 + (t_2 - t_1) / 2`, then subtract `t_0`.
 * Take the average reading by summing the values in the list (`sum(values)`) and dividing by the number of readings (`len(values)`)
 
@@ -856,8 +862,7 @@ while True:
     print("{0:.3f} s : {1:.3f} (average of {2} samples)".format(t_ave, v_ave, n_vals))
 ```
 
-
-#### ii. Writing data to a file <a name="Sec2c_ii"></a>
+### 3.2. Writing data to a file <a name="Sec2c_ii"></a>
 
 Finally, in addition to printing readings to the terminal, the script should also log them to a file for analysis.
 
@@ -929,8 +934,7 @@ Run the code, let it collect for a minute or so, then stop it with `Ctrl + C`.
 Try covering and uncovering the photodiode while collecting to see a change in signal.
 Verify that the output file is created and contains the expected data (download the file to the laptop, open it in Excel, and plot the data.)
 
-
-#### iii. Extension task 1: Measuring square and triangle waves <a name="Sec2c_iii"></a>
+### 3.3. Extension task 1: Measuring square and triangle waves
 
 An easy - but nonetheless interesting - way to test the photometer is to set the LED to blink or pulse while recording the photodiode signal.
 
@@ -977,8 +981,7 @@ The result shows that the `led.pulse()` method attempts to create a triangular w
 
 *Don't forget to undo these changes before making measurements...!*
 
-
-#### iv. Extension task 2: Avoid overwriting previous data <a name="Sec2c_iv"></a>
+### 3.4.  Extension task 2: Avoid overwriting previous data
 
 Those following the code might notice a problem that could become very annoying if left unsolved: if the output file is not renamed after each measurement, or if the hard-coded file name in the script is not changed, each time the script is run it will overwrite data from a previous run.
 (This bug is, unfortunately, a hallmark of many instrument control programs - even commercial ones.)
@@ -1030,8 +1033,9 @@ It is, however, possible to add an RTC using the GPIO pins, which could be done 
 
 <hr>
 
-
 ## 3. Sumary and next steps <a name="Sec3"></a>
+
+<hr>
 
 This part of this experiment shows how Python can be used with a microcontroller to interface to hardware and build a simple prototype device.
 Hopefully the appeal is clear - it has been possible to build and program a functional photometer in just a few hours of work.
@@ -1141,13 +1145,13 @@ with open(output_file, 'w') as output_writer:
 
 <hr>
 
+## 4. Appendix
 
-## 4. Appendix <a name="Sec4"></a>
+<hr>
 
 The information in this section is intended for those interested in recreating this experiment and/or adapting it for themselves, and does not form part of the practical.
 
-
-### a. Parts list <a name="Sec4a"></a>
+### 4.1 Parts List
 
 The following table lists the parts used for this experiment.
 For a small number of setups, most of the electronic components can be bought in smaller denominations at a slightly higher cost per unit.
@@ -1174,7 +1178,7 @@ For a small number of setups, most of the electronic components can be bought in
 | Digital multimeter                   | £ 3.30     | £ 3.30    | Farnell IN07220              | D03046             |
 |                                      | **Total:** | £45.80    |                              |                    |
 
-### b. Raspberry Pi setup <a name="Sec4b"></a>
+### 4.2 Raspberry Pi setup
 
 This section will be updated with more comprehensive instructions in the future; for now, the following links provide the information used to set up the RPi Zero W for this experiment:
 
@@ -1185,7 +1189,7 @@ This section will be updated with more comprehensive instructions in the future;
 * Configuring the Zero W as an ethernet gadget: [https://gist.github.com/gbaman/975e2db164b3ca2b51ae11e45e8fd40a](https://gist.github.com/gbaman/975e2db164b3ca2b51ae11e45e8fd40a)
 
 
-### c. Alternative connection with USB <a name="Sec4c"></a>
+### 4.3 Alternative connection with USB
 
 If connecting with WiFi is not practical, the RPi Zero W can also be configured to act as an "ethernet gadget" (see above for instructions).
 This method of connecting will also work with the (cheaper) RPi Zero. 
@@ -1217,8 +1221,9 @@ MacOS supports this by default, whereas Windows will require the Apple [Bonjour]
 
 <hr>
 
+## 5. Notes and acknowledgements
 
-## 5. Notes and acknowledgements <a name="Sec5"></a>
+<hr>
 
 * Equations were prepared with [http://latex2png.com](http://latex2png.com).
 
