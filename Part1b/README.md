@@ -1033,7 +1033,7 @@ It is, however, possible to add an RTC using the GPIO pins, which could be done 
 
 <hr>
 
-## 3. Sumary and next steps <a name="Sec3"></a>
+## 4. Sumary and next steps <a name="Sec3"></a>
 
 <hr>
 
@@ -1145,13 +1145,13 @@ with open(output_file, 'w') as output_writer:
 
 <hr>
 
-## 4. Appendix
+## 5. Appendix
 
 <hr>
 
 The information in this section is intended for those interested in recreating this experiment and/or adapting it for themselves, and does not form part of the practical.
 
-### 4.1 Parts List
+### 5.1 Parts List
 
 The following table lists the parts used for this experiment.
 For a small number of setups, most of the electronic components can be bought in smaller denominations at a slightly higher cost per unit.
@@ -1178,7 +1178,7 @@ For a small number of setups, most of the electronic components can be bought in
 | Digital multimeter                   | £ 3.30     | £ 3.30    | Farnell IN07220              | D03046             |
 |                                      | **Total:** | £45.80    |                              |                    |
 
-### 4.2 Raspberry Pi setup
+### 5.2 Raspberry Pi setup
 
 This section will be updated with more comprehensive instructions in the future; for now, the following links provide the information used to set up the RPi Zero W for this experiment:
 
@@ -1189,7 +1189,7 @@ This section will be updated with more comprehensive instructions in the future;
 * Configuring the Zero W as an ethernet gadget: [https://gist.github.com/gbaman/975e2db164b3ca2b51ae11e45e8fd40a](https://gist.github.com/gbaman/975e2db164b3ca2b51ae11e45e8fd40a)
 
 
-### 4.3 Alternative connection with USB
+### 5.3 Alternative connection with USB
 
 If connecting with WiFi is not practical, the RPi Zero W can also be configured to act as an "ethernet gadget" (see above for instructions).
 This method of connecting will also work with the (cheaper) RPi Zero. 
@@ -1221,7 +1221,7 @@ MacOS supports this by default, whereas Windows will require the Apple [Bonjour]
 
 <hr>
 
-## 5. Notes and acknowledgements
+## 6. Notes and acknowledgements
 
 <hr>
 
