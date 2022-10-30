@@ -273,6 +273,12 @@ There are also options to create files and folders, and double-clicking a file o
 
 For Mac users: WinSCP is a Windows-only program, but [FileZilla](https://filezilla-project.org) is a good alternative.
 
+### 1.5 Using a multimeter
+
+A multimeter is an instrument that can be used to measure voltage, current, resistance, as well as test out equipment such as LEDs. To set up the multimeter, place the black probe into the common `COM` jack. This is the ground (or negative) of a circuit. Place the red probe in the jack that has the voltage and resistance symbols.
+
+For this experiment, the most useful settings of the multimeter will be the ones for measuring resistance. To measure resistance, turn the multimeter's function select wheel to one of the Ohm $\Omega$ settings. The multimeter can measure resistance in the millions of Ohms, but the resistors used in this experiment will have a much lower resistance. To get the most accurate measurement of the value of the resistor, set the resistance setting of the multimeter to the closest one above the value of the resistor. You can start off with a very high resistance setting on the multimeter and then decrease it until the values on the screen start changing. Note that the multimeter changes the units (e.g. Ohms $\Omega$ or kilo-Ohms $k\Omega$) depending on the resistance setting that is selected.
+
 ## 2. Building the photometer
 
 ### 2.1. LEDs
