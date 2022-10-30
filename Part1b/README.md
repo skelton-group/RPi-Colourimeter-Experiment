@@ -8,11 +8,7 @@ Part 1b of the practical will use some of the Python basics from Part 1a to buil
 
 Part 2 will then use the photometer to study the kinetics of the oxidation reaction between NaClO (household bleach) and Brilliant Blue FCF food dye.
 
-<hr>
-
 ## 1. RPi basics
-
-<hr>
 
 The Raspberry Pis are a family of low-cost single-board computers created by the [Raspberry Pi Foundation](https://www.raspberrypi.org/about/) with the aim of encouraging more students into programming.
 
@@ -266,11 +262,7 @@ There are also options to create files and folders, and double-clicking a file o
 
 For Mac users: WinSCP is a Windows-only program, but [FileZilla](https://filezilla-project.org) is a good alternative.
 
-<hr>
-
 ## 2. Building the photometer
-
-<hr>
 
 ### 2.1. LEDs
 
@@ -678,12 +670,7 @@ Optimising the electronics for these considerations is an important part of inst
   </tr>
 </table>
 
-<hr>
-
 ## 3. Measurement program
-
-<hr>
-
 
 At this point, the LED light source and photodiode detector should be working, so the final step is to write a program to make continuous measurements and log them to a file.
 
@@ -997,11 +984,7 @@ An even more logical thing to do would be to name the file with the date/time wh
 Unfortunately, the Pi doesn't have a "real time clock" (RTC) to keep track of the time while it's powered off, so getting a date/time in scripts is not reliable.
 It is, however, possible to add an RTC using the GPIO pins, which could be done in a more complete production instrument if required.
 
-<hr>
-
 ## 4. Summary and next steps
-
-<hr>
 
 This part of this experiment shows how Python can be used with a microcontroller to interface to hardware and build a simple prototype device.
 Hopefully the appeal is clear - it has been possible to build and program a functional photometer in just a few hours of work.
@@ -1110,13 +1093,7 @@ with open(output_file, 'w') as output_writer:
         
         print("{0:.3f} s : {1:.3f}".format(t_ave, v_ave))
 ```
-
-
-<hr>
-
 ## 5. Appendix
-
-<hr>
 
 The information in this section is intended for those interested in recreating this experiment and/or adapting it for themselves, and does not form part of the practical.
 
@@ -1189,8 +1166,6 @@ MacOS supports this by default, whereas Windows will require the Apple [Bonjour]
 </table>
 
 ## 6. Notes and acknowledgements
-
-<hr>
 
 * Equations were prepared with [http://latex2png.com](http://latex2png.com).
 
