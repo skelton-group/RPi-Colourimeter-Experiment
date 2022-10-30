@@ -718,7 +718,7 @@ Optimising the electronics for these considerations is an important part of inst
 
 <hr>
 
-### 3. Measurement program
+## 3. Measurement program
 
 
 At this point, the LED light source and photodiode detector should be working, so the final step is to write a program to make continuous measurements and log them to a file.
