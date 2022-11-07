@@ -275,9 +275,38 @@ For Mac users: WinSCP is a Windows-only program, but [FileZilla](https://filezil
 
 ### 1.5 Using a multimeter
 
-A multimeter is an instrument that can be used to measure voltage, current, resistance, as well as test out equipment such as LEDs. To set up the multimeter, place the black probe into the common `COM` jack. This is the ground (or negative) of a circuit. Place the red probe in the jack that has the voltage and resistance symbols.
 
-For this experiment, the most useful settings of the multimeter will be the ones for measuring resistance. To measure resistance, turn the multimeter's function select wheel to one of the Ohm $\Omega$ settings. The multimeter can measure resistance in the millions of Ohms, but the resistors used in this experiment will have a much lower resistance. To get the most accurate measurement of the value of the resistor, set the resistance setting of the multimeter to the closest one above the value of the resistor. You can start off with a very high resistance setting on the multimeter and then decrease it until the values on the screen start changing. Note that the multimeter changes the units (e.g. Ohms $\Omega$ or kilo-Ohms $k\Omega$) depending on the resistance setting that is selected.
+#### 1.5.1 Multimeter Setup
+A multimeter is an instrument that can be used to measure voltage, current, resistance, as well as test out equipment such as LEDs. To set up the multimeter, place the black probe into the common `COM` jack. This is the ground (or negative) of a circuit. Place the red probe in the jack that has the voltage and resistance symbols. This is what the connections should look like 
+
+<p align="center">
+  <img src="Images/multimeter_connections.jpg" width="250">
+</p>
+
+#### 1.5.1 Measuring Resistance
+For this experiment, the most useful settings of the multimeter will be the ones for measuring resistance. To measure resistance, turn the multimeter's function select wheel to one of the Ohm $\Omega$ settings. The multimeter can measure resistance in the millions of Ohms, but the resistors used in this experiment will have a much lower resistance. To get the most accurate measurement of the value of the resistor, set the resistance setting of the multimeter to the closest one above the value of the resistor. You can start off with a very high resistance setting on the multimeter and then decrease it until the values on the screen start changing. Note that the multimeter changes the units (e.g. Ohms $\Omega$, kilo-Ohms $k\Omega$, mega-Ohms $M\Omega$) depending on the resistance setting that is selected. Below is an example of measuring resistors of $100 \Omega$ (left) and $1,000,000 \Omega$ (right). Note the resistance setting that is selected. Also note that resistors have a specified tolerance, so each resistor will have a slightly different resistance.
+
+<p align="center">
+    <img src="Images/100_ohm_resistor_multimeter.jpg" width="150">
+    <img src="Images/1_000_000_ohm_resistor_multimeter.jpg" width="185">
+</p>
+
+#### 1.5.2 Testing LEDs
+
+LEDs or RGB LEDs can be quickly tested by selecting the diode setting
+
+<p align="center">
+    <img src="Images/diode_setting_multimeter.jpg" width="300">
+</p>
+
+Connect the anode (+) to the red probe and the cathode (-) to the black probe and the LED should light up the corresponding color.
+
+<p align="center">
+    <img src="Images/red_led_multimeter.jpg" width="100">
+    <img src="Images/green_led_multimeter.jpg" width="100">
+    <img src="Images/blue_led_test.jpg" width="100">
+</p>
+
 
 ## 2. Building the photometer
 
@@ -708,7 +737,7 @@ cs_pin = 8
 channel = 0
 
 adc = gpiozero.MCP3008(
-    channel = 0,
+    channel = channel,
     clock_pin = clk_pin,
     mosi_pin = mosi_pin,
     miso_pin = miso_pin,
