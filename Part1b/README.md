@@ -283,7 +283,7 @@ A multimeter is an instrument that can be used to measure voltage, current, resi
   <img src="Images/multimeter_connections.jpg" width="250">
 </p>
 
-#### 1.5.1 Measuring Resistance
+#### 1.5.2 Measuring Resistance
 For this experiment, the most useful settings of the multimeter will be the ones for measuring resistance. To measure resistance, turn the multimeter's function select wheel to one of the Ohm $\Omega$ settings. The multimeter can measure resistance in the millions of Ohms, but the resistors used in this experiment will have a much lower resistance. To get the most accurate measurement of the value of the resistor, set the resistance setting of the multimeter to the closest one above the value of the resistor. You can start off with a very high resistance setting on the multimeter and then decrease it until the values on the screen start changing. Note that the multimeter changes the units (e.g. Ohms $\Omega$, kilo-Ohms $k\Omega$, mega-Ohms $M\Omega$) depending on the resistance setting that is selected. Below is an example of measuring resistors of $100 \Omega$ (left) and $1,000,000 \Omega$ (right). Note the resistance setting that is selected. Also note that resistors have a specified tolerance, so each resistor will have a slightly different resistance.
 
 <p align="center">
@@ -291,7 +291,7 @@ For this experiment, the most useful settings of the multimeter will be the ones
     <img src="Images/1_000_000_ohm_resistor_multimeter.jpg" width="185">
 </p>
 
-#### 1.5.2 Testing LEDs
+#### 1.5.3 Testing LEDs
 
 LEDs or RGB LEDs can be quickly tested by selecting the diode setting
 
