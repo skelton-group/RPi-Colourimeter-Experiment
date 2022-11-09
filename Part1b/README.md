@@ -346,9 +346,9 @@ Ohm's Law is used to calculate the required resistance as follows:
 
 $$ \left ( V_\text{S} - V_\text{F} \right) = I_\text{F} R \quad \therefore \quad R = \frac{V_\text{S} - V_\text{F}}{I_\text{F}} $$
 
-where $V_\text{S}$ and $V_\text{F}$  are the (power) supply voltage and LED forward voltage (in Volts, V), $I_\text{F}$  is the desired forward current (in amps, A) through the LED, and $R$ is the required resistance (In Ohms, &Omega;).
+where $V_\text{S}$ and $V_\text{F}$ are the (power) supply voltage and LED forward voltage (in Volts, V), $I_\text{F}$ is the desired forward current (in amps, A) through the LED, and $R$ is the required resistance (In Ohms, &Omega;).
 
-The GPIO pins on the Pi can supply a maximum **total** 50 mA of current at 3.3 V, and around 15 mA on any one pin, so $V_S$ = 3.3 V and $I_F$ = 15 $\times$ 10<sup>-3</sup> A.
+The GPIO pins on the Pi can supply a maximum **total** 50 mA of current at 3.3 V, and around 15 mA on any one pin, so $V_\text{S}$ = 3.3 V and $I_\text{F}$ = 15 $\times$ 10<sup>-3</sup> A.
 Using $V_\text{F}$ = 2.1 V, an 80 &Omega; resistor would be required for the red anode.
 Using $V_\text{F}$ = 3.2 V, 6.7 &Omega; resistors would be required for the green and blue anodes.
 
@@ -580,7 +580,7 @@ This practical uses the MCP602 op-amp, which comes packaged as a chip with eight
   <img src="Images/MCP602.gif" width="250">
 </p>
 
-There are two op-amps (A and B) with three connections each (e.g. $\text{V}_\text{INA-}$ , $\text{V}_\text{INA+}$ and $\text{V}_\text{OUTA}$), plus connections for the two voltage references ($\text{V}_\text{DD}$ and $\text{V}_\text{SS}$).
+There are two op-amps (A and B) with three connections each (e.g. $\text{V_{INA-}}$ , $\text{V_{INA+}}$ and $\text{V_{OUTA}}$), plus connections for the two voltage references ($\text{V_{DD}}$ and $\text{V_{SS}}$).
 
 <table>
   <tr>
