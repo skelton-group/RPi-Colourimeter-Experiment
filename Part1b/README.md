@@ -5,7 +5,7 @@ Part 1b of the practical will use some of the Python basics from Part 1a to buil
 The Table of Contents for Part 1b can be found by pressing the button shown below:
 
 <p align="center">
-  <img src="Images/show_table_of_contents.png" width="500">
+  <img src="Images/Screen-ToC.png" width="500">
 </p>
 
 Part 2 will then use the photometer to study the kinetics of the oxidation reaction between NaClO (household bleach) and Brilliant Blue FCF food dye.
@@ -285,23 +285,23 @@ A multimeter is an instrument that can be used to measure voltage, current and r
 To set up the multimeter, connect the black probe to the "common" (`COM`) jack (this is the ground of the circuit) and the red probe to the jack with voltage and resistance symbols:
 
 <p align="center">
-  <img src="Images/multimeter_connections.jpg" width="250">
+  <img src="Images/Photo-Multimeter-Connections.jpg" width="250">
 </p>
 
 
 #### 1.5.2 Measuring resistance
 
 For this experiment, the most useful mulltimeter setting will be the ones for measuring resistance.
-To measure resistance, turn the function dial to one of the resistance ($\Omega$) settings.
-There are several settings designed to measure different resistances, typically in the Ohm ($\Omega$), kilo-Ohm (k$\Omega$) and mega-Ohm M$\Omega$ ranges.
+To measure resistance, turn the function dial to one of the resistance (&Omega;) settings.
+There are several settings designed to measure different resistances, typically in the Ohm (&Omega;), kilo-Ohm (k&Omega;) and mega-Ohm M&Omega; ranges.
 To get the most accurate measurement, the setting shoulld match the the value of the resistor as closely as possible.
 You can start off with a very high resistance setting and then decrease it until a value is dislayed.
-The photos below show examples of measuring 100 $\Omega$ (left) and 1,000,000 $\Omega$ (1 M$\Omega$, right) - note the resistance settings selected for each.
+The photos below show examples of measuring 100 &Omega; (left) and 1,000,000 &Omega; (1 M&Omega;, right) - note the resistance settings selected for each.
 Also note that resistors have a tolerance, so each resistor will show a slightly different resistance.
 
 <p align="center">
-    <img src="Images/100_ohm_resistor_multimeter.jpg" width="150">
-    <img src="Images/1_000_000_ohm_resistor_multimeter.jpg" width="185">
+    <img src="Images/Photo-Multimeter-100OhmResistor.jpg" height="200">
+    <img src="Images/Photo-Multimeter-1MOhmResistor.jpg" height="200">
 </p>
 
 
@@ -310,15 +310,15 @@ Also note that resistors have a tolerance, so each resistor will show a slightly
 LEDs, including the RGB LEDs used in this experiment, can be quickly tested by selecting the diode setting on the multimeter:
 
 <p align="center">
-    <img src="Images/diode_setting_multimeter.jpg" width="300">
+    <img src="Images/Photo-Multimeter-DiodeSetting.jpg" width="300">
 </p>
 
 Connect the anode (+) to the red probe and the cathode (-) to the black probe, and the LED should light up:
 
 <p align="center">
-    <img src="Images/red_led_multimeter.jpg" width="100">
-    <img src="Images/green_led_multimeter.jpg" width="100">
-    <img src="Images/blue_led_test.jpg" width="100">
+    <img src="Images/Photo-Multimeter-RedLED.jpg" width="150">
+    <img src="Images/Photo-Multimeter-GreenLED.jpg" width="150">
+    <img src="Images/Photo-Multimeter-BlueLED.jpg" width="150">
 </p>
 
 
@@ -331,7 +331,7 @@ The first step is to build a circuit to power and control a light-emitting diode
 For this practical, an RGB (<u>r</u>ed, <u>g</u>reen, <u>b</u>lue) LED has been provided that can produce three different colours, allowing the software to select from three different wavelengths.
 
 LEDs are electroluminescent devices that produce photons of light by passing an electrical current through a semiconductor material.
-The material used in the LED determines the the emission wavelength (colour) - this particular LED uses an InAlGaP alloy for the red emitter ($\lambda_\mathrm{max}$ = 620 nm) and InGaN alloys for the green and blue emitters ($\lambda_\mathrm{max}$ = 525/460 nm).
+The material used in the LED determines the the emission wavelength (colour) - this particular LED uses an InAlGaP alloy for the red emitter ($\lambda_\text{max}$ = 620 nm) and InGaN alloys for the green and blue emitters ($\lambda_\text{max}$ = 525/460 nm).
 
 LEDs require two connections: an anode (+), connected to a power supply, and a cathode (-), through which current flows to the ground.
 An RGB LED has three anodes, one for each semiconductor, and a common (shared) cathode.
@@ -344,27 +344,25 @@ The three independent LEDs are each designed to operate at a typical 20 milliamp
 
 Ohm's Law is used to calculate the required resistance as follows:
 
-$$
-\left ( V_S - V_F \right) = I_F R \quad \therefore \quad R = \frac{V_S - V_F}{I_F}
-$$
+$$ \left ( V_\text{S} - V_\text{F} \right) = I_\text{F} R \quad \therefore \quad R = \frac{V_\text{S} - V_\text{F}}{I_\text{F}} $$
 
-where $V_S$ and $V_F$  are the (power) supply voltage and LED forward voltage (in Volts, V), $I_F$  is the desired forward current (In amps, A) through the LED, and $R$ is the required resistance (In Ohms, $\Omega$).
+where $V_\text{S}$ and $V_\text{F}$  are the (power) supply voltage and LED forward voltage (in Volts, V), $I_\text{F}$  is the desired forward current (in amps, A) through the LED, and $R$ is the required resistance (In Ohms, &Omega;).
 
 The GPIO pins on the Pi can supply a maximum **total** 50 mA of current at 3.3 V, and around 15 mA on any one pin, so $V_S$ = 3.3 V and $I_F$ = 15 $\times$ 10<sup>-3</sup> A.
-Using $V_F$ = 2.1 V, an 80 $\Omega$ resistor would be required for the red anode.
-Using $V_F$ = 3.2 V, 6.7 $\Omega$ resistors would be required for the green and blue anodes.
+Using $V_\text{F}$ = 2.1 V, an 80 &Omega; resistor would be required for the red anode.
+Using $V_\text{F}$ = 3.2 V, 6.7 &Omega; resistors would be required for the green and blue anodes.
 
 
 ### 2.2. Resistors
 
 Resistors are manufactured in a wide range of standard values, and resistors with the required or *higher* value should be selected - using a resistor with a higher resistance simply limits the current and decreases the LED brightness proportionally.
-For this setup, 105 %\Omega$ and 12.5 $\Omega$ resistors have been provided.
+For this setup, 105 &Omega; and 12.5 &Omega; resistors have been provided.
 
 <img align="left" src="Images/InformationSymbol.png" width="100"/>
 
 Resistors typically have a set of 4-6 coloured bands printed on the housing that indicate the resistance and the tolerance.
 The easiest way to convert the band colours to resistance values is to use as website such as [this one](href="https://www.digikey.co.uk/en/resources/conversion-calculators/conversion-calculator-resistor-color-code-4-band").
-However, it is usually more reliable to check with a multimeter - set the meter to the appropriate mode (e.g. the 200 $\Omega$ setting for $R$ < 200 $\Omega$), touch the probes to the legs on the resistor, and read the resistance from the display.
+However, it is usually more reliable to check with a multimeter - set the meter to the appropriate mode (e.g. the 200 &Omega; setting for $R$ < 200 &Omega;), touch the probes to the legs on the resistor, and read the resistance from the display.
 (Note that the orientation of the resistor does not affect the reading.)
 
 
@@ -566,14 +564,14 @@ An op-amp also needs a pair of reference voltages supplied to set the range the 
 In the transimpedence amplifier, the photodiode anode is connected to the ground and the cathode is connected to the inverting (-) input of the amplifier.
 The non-inverting (+) input is also connected to the ground.
 
-The amplifier output, where the output voltage $V_{Out}$ is measured, is connected back to the inverting (-) input across a feedback resistor with a resistance $R_F$.
-This produces an output voltage $V_{Out}$ proportional to the photocurrent $I_{PD}$ according to:
+The amplifier output, where the output voltage $V_\text{out}$ is measured, is connected back to the inverting (-) input across a feedback resistor with a resistance $R_\text{f}$.
+This produces an output voltage $V_\text{out}$ proportional to the photocurrent $I_\text{p}$ according to:
 
-$$ V_{Out} = I_{PD} \times R_F$$
+$$ V_\text{out} = I_\text{p} \times R_\text{f} $$
 
-Under direct illumination with a bright light source like an LED, the photodiode will produce a current $I_{PD}$ on the order 10 $\mu$A or 10<sup>-5</sup> A.
+Under direct illumination with a bright light source like an LED, the photodiode will produce a current $I_\text{p}$ on the order 10 &mu;A or 10<sup>-5</sup> A.
 Using the 3.3 V supply and 0 V ground from the Pi as the reference voltages, the op-amp will be able to produce a signal in the range of 0-3.3 V.
-$R_F$ therefore needs to be on the order of 10<sup>5</sup> $\Omega$ (100 k$\Omega$) to bring the signal into this range.
+$R_\text{f}$ therefore needs to be on the order of 10<sup>5</sup> &Omega; (100 k&Omega;) to bring the signal into this range.
 
 ICs such as op-amps are usually bought packaged in microchip casings designed to be plugged directly into breadboards.
 This practical uses the MCP602 op-amp, which comes packaged as a chip with eight connections:
@@ -582,7 +580,7 @@ This practical uses the MCP602 op-amp, which comes packaged as a chip with eight
   <img src="Images/MCP602.gif" width="250">
 </p>
 
-There are two op-amps (A and B) with three connections each (e.g. $V_\text{INA-}$ , $V_\text{INA+}$ and $V_\text{OUTA}$), plus connections for the two voltage references ($V_{DD}$ and $V_{SS}$).
+There are two op-amps (A and B) with three connections each (e.g. $\text{V}_\text{INA-}$ , $\text{V}_\text{INA+}$ and $\text{V}_\text{OUTA}$), plus connections for the two voltage references ($\text{V}_\text{DD}$ and $\text{V}_\text{SS}$).
 
 <table>
   <tr>
@@ -596,7 +594,7 @@ There are two op-amps (A and B) with three connections each (e.g. $V_\text{INA-}
   </tr>
 </table>
 
-Connect the diode, amplifier and a 100 k$\Omega$ feedback resistor as shown in the schematic below.
+Connect the diode, amplifier and a 100 k&Omega; feedback resistor as shown in the schematic below.
 (The longer leg of the photodiode is the anode and should be connected to the ground).
 The diode needs to be angled to point at the LED, leaving at least a 1 cm gap for a standard cuvette plus some additional space to allow the cuvette to be inserted and removed without disturbing the components.
 The connections can be made using either male-to-male jumper wires or spare wire trimmed from component legs.
@@ -619,20 +617,21 @@ A connection diagram is shown below:
   <img src="Images/MCP3008.png" width="250">
 </p>
 
-The connections on the left-hand side of the diagram are the analogue inputs. The MCP3008 has eight input channels (CH0-CH7) that can be selected by sending appropriate control signals to the chip.
+The connections on the left-hand side of the diagram are the analogue inputs.
+The MCP3008 has eight input channels (CH0-CH7) that can be selected by sending appropriate control signals to the chip.
 
-The logic in the chip requires power and ground connections on $V_\mathrm{DD}$ and DGND.
-The voltage on the input channels is digitised relative to a reference voltage connected to <i>V</i><sub>REF</sub> and the channels are grounded to a second ground connection AGND.
+The logic in the chip requires power and ground connections on $\text{V}_\text{DD}$ and $\text{DGND}$.
+The voltage on the input channels is digitised relative to a reference voltage connected to $\text{V}_\text{REF}$ and the channels are grounded to a second ground connection AGND.
 
 The MCP3008 communicates with controllers such as the Pi using the serial peripheral interface (SPI) protocol, which requires a further four connections:
 
 1. CLK ("clock") provides a timing signal from the Pi to synchronise (digital) data transfers.
-2. $D_\mathrm{IN}$ is for the chip (slave) to receive data from the Pi (master), and is usually called "MOSI" (<u>m</u>aster <u>o</u>ut <u>s</u>lave <u>i</u>n).
-3. $D_\mathrm{OUT}$ is for the chip to send data to the Pi ("MISO" - <u>m</u>aster <u>i</u>n <u>s</u>lave <u>o</u>ut)
+2. $\text{D}_\text{IN}$ is for the chip (slave) to receive data from the Pi (master), and is usually called "MOSI" (<u>m</u>aster <u>o</u>ut <u>s</u>lave <u>i</u>n).
+3. $\text{D}_\text{OUT}$ is for the chip to send data to the Pi ("MISO" - <u>m</u>aster <u>i</u>n <u>s</u>lave <u>o</u>ut)
 4. Finally, the CS ("chip select") pin is to allow the MCP3008 to work alongside other SPI devices (we will not be doing this, but it still needs to be connected).
 
 Set up the MCP3008 as shown below schematic/photo below (again, note the orientation of the notch).
-Connect the $V_\mathrm{DD}$ and $V_\mathrm{REF}$ to the power rail (+), and the DGND and AGND pins to the ground rail (-).
+Connect the $\text{V}_\text{DD}$ and $\text{V}_\text{REF}$ to the power rail (+), and the DGND and AGND pins to the ground rail (-).
 
 <p align="center">
   <img src="Images/Schematic-Complete.png" width="750px">
@@ -648,8 +647,8 @@ Next, connect the four SPI pins to the RPi.
 The Pi supports hardware SPI connections using one of two sets of pins - use the following:
 
 * CLK -> pin 11 (labelled "SCLK" on [pinout.xyz](https://pinout.xyz))
-* D<sub>IN</sub> -> pin 10 (MOSI)
-* D<sub>OUT</sub> -> pin 9 (MISO)
+* $\text{D}_\text{IN}$ -> pin 10 (MOSI)
+* $\text{D}_\text{OUT}$ -> pin 9 (MISO)
 * CS -> pin 8 (CE0)
 
 Connect to the Pi again, navigate to the work folder, create a new script file (e.g. "ADCTest.py"), and add the following code:
