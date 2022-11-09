@@ -647,8 +647,8 @@ Next, connect the four SPI pins to the RPi.
 The Pi supports hardware SPI connections using one of two sets of pins - use the following:
 
 * CLK -> pin 11 (labelled "SCLK" on [pinout.xyz](https://pinout.xyz))
-* $\text{D}_\text{IN}$ -> pin 10 (MOSI)
-* $\text{D}_\text{OUT}$ -> pin 9 (MISO)
+* D<sub>IN</sub> -> pin 10 (MOSI)
+* D<sub>OUT</sub> -> pin 9 (MISO)
 * CS -> pin 8 (CE0)
 
 Connect to the Pi again, navigate to the work folder, create a new script file (e.g. "ADCTest.py"), and add the following code:
