@@ -580,7 +580,7 @@ This practical uses the MCP602 op-amp, which comes packaged as a chip with eight
   <img src="Images/MCP602.gif" width="250">
 </p>
 
-There are two op-amps (A and B) with three connections each (e.g. $\text{V_{INA-}}$ , $\text{V_{INA+}}$ and $\text{V_{OUTA}}$), plus connections for the two voltage references ($\text{V_{DD}}$ and $\text{V_{SS}}$).
+There are two op-amps (A and B) with three connections each (e.g. V<sub>INA-</sub> , V<sub>INA+</sub> and V<sub>OUTA</sub>), plus connections for the two voltage references (V<sub>DD</sub> and V<sub>SS</sub>).
 
 <table>
   <tr>
@@ -620,18 +620,18 @@ A connection diagram is shown below:
 The connections on the left-hand side of the diagram are the analogue inputs.
 The MCP3008 has eight input channels (CH0-CH7) that can be selected by sending appropriate control signals to the chip.
 
-The logic in the chip requires power and ground connections on $\text{V}_\text{DD}$ and $\text{DGND}$.
-The voltage on the input channels is digitised relative to a reference voltage connected to $\text{V}_\text{REF}$ and the channels are grounded to a second ground connection AGND.
+The logic in the chip requires power and ground connections on V<sub>DD</sub> and DGND.
+The voltage on the input channels is digitised relative to a reference voltage connected to V<sub>REF</sub> and the channels are grounded to a second ground connection AGND.
 
 The MCP3008 communicates with controllers such as the Pi using the serial peripheral interface (SPI) protocol, which requires a further four connections:
 
 1. CLK ("clock") provides a timing signal from the Pi to synchronise (digital) data transfers.
-2. $\text{D}_\text{IN}$ is for the chip (slave) to receive data from the Pi (master), and is usually called "MOSI" (<u>m</u>aster <u>o</u>ut <u>s</u>lave <u>i</u>n).
-3. $\text{D}_\text{OUT}$ is for the chip to send data to the Pi ("MISO" - <u>m</u>aster <u>i</u>n <u>s</u>lave <u>o</u>ut)
+2. D<sub>IN</sub> is for the chip (slave) to receive data from the Pi (master), and is usually called "MOSI" (<u>m</u>aster <u>o</u>ut <u>s</u>lave <u>i</u>n).
+3. D<sub>OUT</sub> is for the chip to send data to the Pi ("MISO" - <u>m</u>aster <u>i</u>n <u>s</u>lave <u>o</u>ut)
 4. Finally, the CS ("chip select") pin is to allow the MCP3008 to work alongside other SPI devices (we will not be doing this, but it still needs to be connected).
 
 Set up the MCP3008 as shown below schematic/photo below (again, note the orientation of the notch).
-Connect the $\text{V}_\text{DD}$ and $\text{V}_\text{REF}$ to the power rail (+), and the DGND and AGND pins to the ground rail (-).
+Connect the V<sub>DD</sub> and V<sub>REF</sub> to the power rail (+), and the DGND and AGND pins to the ground rail (-).
 
 <p align="center">
   <img src="Images/Schematic-Complete.png" width="750px">
